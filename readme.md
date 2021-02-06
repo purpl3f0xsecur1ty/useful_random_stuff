@@ -17,3 +17,7 @@ powershell -enc RwBlAHQALQBDAGgAaQBsAGQASQB0AGUAbQA=
 ```
 
 -----
+# download_cradle.ps1
+-----
+PowerShell that will download and execute malicious code in memory **without touching the disk**. <br />
+Requires a malicious DLL hosted on a download location you control.
