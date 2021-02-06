@@ -21,3 +21,9 @@ powershell -enc RwBlAHQALQBDAGgAaQBsAGQASQB0AGUAbQA=
 -----
 PowerShell that will download and execute malicious code in memory **without touching the disk**. <br />
 Requires a malicious DLL hosted on a download location you control.
+
+-----
+# ps_download_onliner.ps1
+-----
+Powershell that will download and execute remotely hosted Powershell scripts in memory **without touching the disk**. <br />
+Piping the script to IEX (Invoke-Expression) bypasses **script execution policy**.
