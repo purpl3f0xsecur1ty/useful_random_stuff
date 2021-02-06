@@ -8,3 +8,8 @@ Example:
 Also works on PS for Kali:
 
 ![](https://i.imgur.com/BMibZv1.png)
+
+Usage:
+```powershell
+powershell -enc RwBlAHQALQBDAGgAaQBsAGQASQB0AGUAbQA=
+```
