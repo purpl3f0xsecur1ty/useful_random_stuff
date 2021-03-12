@@ -40,9 +40,7 @@ namespace SQL
                 ForegroundColor = ConsoleColor.Black;
                 WriteLine($"[ FATAL ] Failed to authenticate to {sqlServer}.\n");
                 ResetColor();
-                // FOR DEBUGGING AND TESTING, COMMENT THIS OUT OTHERWISE!
-                menu(con);
-                // Environment.Exit(0);
+                Environment.Exit(0);
 
             }
         }
