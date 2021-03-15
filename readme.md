@@ -17,6 +17,46 @@ powershell -enc RwBlAHQALQBDAGgAaQBsAGQASQB0AGUAbQA=
 ```
 
 -----
+# Class1.cs
+-----
+C# source code for a malicious DLL that executes shellcode.
+
+-----
+# ClassLibrary1_53.exe
+-----
+Malicious DLL that executes a reverse Meterpreter shell over port 53.
+
+-----
+# PipeImpersonate_cradle.cs
+-----
+C# source code.
+
+-----
+# PipeImpersonate_cradle.exe
+-----
+C# executable that captures tokens from SpoolSample and then executes a PowerShell command to download and run download_cradle.ps1.
+
+-----
+# SQL.cs
+-----
+C# source code.
+
+-----
+# SQL.exe
+-----
+C# SQL client for enumerating and attacking MSSQL servers.
+
+-----
+# SQL_sa.cs
+-----
+C# source code.
+
+-----
+# SQL_sa.exe
+-----
+C# SQL client for enumerating and attacking MSSQL servers, with SA impersonation for Linked Servers.
+
+-----
 # download_cradle.ps1
 -----
 PowerShell that will download and execute malicious code in memory **without touching the disk**. <br />
