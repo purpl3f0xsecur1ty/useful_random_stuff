@@ -27,3 +27,9 @@ Requires a malicious DLL hosted on a download location you control.
 -----
 Powershell that will download and execute remotely hosted Powershell scripts in memory **without touching the disk**. <br />
 Piping the script to IEX (Invoke-Expression) bypasses **script execution policy**.
+
+
+
+
+
+👀
