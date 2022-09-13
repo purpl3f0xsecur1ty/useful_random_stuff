@@ -79,12 +79,12 @@ IP=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep eth0 | grep -Po "
 IP2=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep tun0 | grep -Po "inet \K[\d.]+")
 
 if [ $IP2 ]; then
-    VPN=" %F{%(#.blue.green)}[ 🖥️  %F{cyan}$IP2 %F{%(#.blue.green)}]"
+    VPN="%F{%(#.blue.green)}─🮤🖥️  %F{cyan}$IP2%F{%(#.blue.green)}🮥"
 else
     VPN=""
 fi
 if [ "$color_prompt" = yes ]; then
-    PROMPT=$'%F{%(#.blue.green)}┌──${debian_chroot:+($debian_chroot)──}(%B%F{%(#.red.blue)}purpl3f0x%(#.☠.%F{cyan}㉿)%F{%(#.yellow.yellow)}$IP%b%F{%(#.blue.green)})$VPN\n├─[ 📂 %B%F{reset}%(6~.%-1~/…/%4~.%5~)%b %F{%(#.blue.green)}%F{%(#.blue.green)}]\n└─%B%(#.%F{red}#.%F{blue} ⚔️ )%b%F{reset} '
+    PROMPT=$'%F{%(#.blue.green)}┌──${debian_chroot:+($debian_chroot)──}🮤%B%F{%(#.red.blue)}purpl3f0x~%(#.☠.%F{cyan}🦊)%F{%(#.yellow.yellow)}$IP%b%F{%(#.blue.green)}🮥$VPN─🮤%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}%F{%(#.blue.green)}🮥\n└─%B%(#.%F{red}#.%F{blue}➤)%b%F{reset} '
     RPROMPT=$'%F{%(#.blue.green)}[%F{reset}%t%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)%F{%(#.blue.green)} ]'
     # RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
 
@@ -192,7 +192,8 @@ fi
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
-alias lab='sudo openvpn ~/awae.ovpn > /dev/null 2>&1 &; sleep 10; zsh'
+alias awae-lab='sudo openvpn ~/awae.ovpn > /dev/null 2>&1 &; sleep 10; zsh'
+alias fund-lab='sudo openvpn ~/fundamentals.ovpn > /dev/null 2>&1 &; sleep 10; zsh'
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
