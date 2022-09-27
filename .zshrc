@@ -1,10 +1,8 @@
-source ~/zsh-snap/znap.zsh
-# source ~/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
 setopt autocd              # change directory just by typing its name
-setopt correct             # auto correct mistakes
+#setopt correct            # auto correct mistakes
 setopt interactivecomments # allow comments in interactive mode
 setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
 setopt nonomatch           # hide error message if there is no match for the pattern
@@ -79,14 +77,22 @@ if [ -n "$force_color_prompt" ]; then
 fi
 IP=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep eth0 | grep -Po "inet \K[\d.]+")
 IP2=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep tun0 | grep -Po "inet \K[\d.]+")
+IP3=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep wlan0 | grep -Po "inet \K[\d.]+")
 
 if [ $IP2 ]; then
-    VPN="%F{%(#.blue.green)}─🮤🖥️  %F{cyan}$IP2%F{%(#.blue.green)}🮥"
+    VPN="%F{%(#.blue.green)}─🮤🔒%F{%(#.yellow.yellow)}$IP2%F{%(#.blue.green)}🮥"
 else
     VPN=""
 fi
+
+if [ $IP3 ]; then
+    WIFI="%F{%(#.blue.green)}🮤📶%F{red}$IP3%F{%(#.blue.green)}🮥"
+else
+    WIFI=""
+fi
+
 if [ "$color_prompt" = yes ]; then
-    PROMPT=$'%F{%(#.blue.green)}┌──${debian_chroot:+($debian_chroot)──}🮤%B%F{%(#.red.blue)}Zephy~%(#.☠.%F{green}@%F{cyan}Fjorm)%F{%(#.yellow.yellow)}$IP%b%F{%(#.blue.green)}🮥$VPN─🮤%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}%F{%(#.blue.green)}🮥\n└─%B%(#.%F{red}#.%F{blue}➤)%b%F{reset} '
+    PROMPT=$'%F{%(#.blue.green)}┌──${debian_chroot:+($debian_chroot)──}🮤%B%F{%(#.red.blue)}PURPL3F0X%(#.☠.%F{green}🮥─🮤🖥️ )%F{cyan}$IP%b%F{%(#.blue.green)}🮥$VPN─$WIFI─🮤%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}%F{%(#.blue.green)}🮥\n└─%B%(#.%F{red}#.%F{blue}➤)%b%F{reset} '
     RPROMPT=$'%F{%(#.blue.green)}[%F{reset}%t%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)%F{%(#.blue.green)} ]'
     # RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
 
@@ -191,7 +197,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -la --color=auto'
+alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias awae-lab='sudo openvpn ~/awae.ovpn > /dev/null 2>&1 &; sleep 10; zsh'
@@ -203,3 +209,5 @@ if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     # change suggestion color
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
 fi
+
+export PATH=/home/kali/.local/bin:/usr/local/bin/jadx/bin:$PATH
