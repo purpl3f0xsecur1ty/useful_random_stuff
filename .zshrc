@@ -75,26 +75,46 @@ if [ -n "$force_color_prompt" ]; then
 	color_prompt=
     fi
 fi
-IP=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep eth0 | grep -Po "inet \K[\d.]+")
-IP2=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep tun0 | grep -Po "inet \K[\d.]+")
-IP3=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep wlan0 | grep -Po "inet \K[\d.]+")
+
+# Getting IP addresses to add to prompt
+IP1=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep eth0 | grep -Po "inet \K[\d.]+") # Get normal interface, may need to be changed
+IP2=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep tun0 | grep -Po "inet \K[\d.]+") # Get VPN IP if connected
+IP3=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep wlan0 | grep -Po "inet \K[\d.]+") # Get Wireless IP if connected
+
+# Create prompts based on which interfaces are found
+if [ $IP1 ]; then
+	LOCAL="%F{green}─🮤🖥️ %F{cyan}$IP1%b%F{green}🮥"
+else
+	LOCAL=""
+fi
 
 if [ $IP2 ]; then
-    VPN="%F{%(#.blue.green)}─🮤🔒%F{%(#.yellow.yellow)}$IP2%F{%(#.blue.green)}🮥"
+    VPN="%F{green}─🮤🔒%F{yellow}$IP2%b%F{green}🮥"
 else
     VPN=""
 fi
 
 if [ $IP3 ]; then
-    WIFI="%F{%(#.blue.green)}🮤📶%F{red}$IP3%F{%(#.blue.green)}🮥"
+    WIFI="%F{green}─🮤📶%F{red}$IP3%F{green}🮥"
 else
     WIFI=""
 fi
 
+
+DIR=$'%B%F{yellow}%(6~.%-1~/…/%4~.%5~)%F{green}'
+NAME=$'ᑭᑌᖇᑭᒪ3ᖴ0᙭'
+
 if [ "$color_prompt" = yes ]; then
-    PROMPT=$'%F{%(#.blue.green)}┌──${debian_chroot:+($debian_chroot)──}🮤%B%F{%(#.red.blue)}PURPL3F0X%(#.☠.%F{green}🮥─🮤🖥️ )%F{cyan}$IP%b%F{%(#.blue.green)}🮥$VPN─$WIFI─🮤%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}%F{%(#.blue.green)}🮥\n└─%B%(#.%F{red}#.%F{blue}➤)%b%F{reset} '
-    RPROMPT=$'%F{%(#.blue.green)}[%F{reset}%t%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)%F{%(#.blue.green)} ]'
-    # RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
+
+	# Assemble the prompt in pieces for readability
+	LINE1=$'%F{green}┌──🮤%F{magenta}'$NAME'%F{green}🮥'$LOCAL$VPN$WIFI
+	LINE2=$'\n├──🮤'$DIR'🮥'
+	LINE3=$'\n└─%F{magenta}➤ '
+
+	TIME=$(date +%I:%M' '%p)
+
+    PROMPT=$LINE1$LINE2$LINE3
+    RPROMPT=$'%F{green}[%F{reset} '$TIME'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)%F{green} ]'
 
     # enable syntax-highlighting
     if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && [ "$color_prompt" = yes ]; then
@@ -196,12 +216,14 @@ if [ -x /usr/bin/dircolors ]; then
     zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 fi
 
-# some more ls aliases
+# Aliases
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias awae-lab='sudo openvpn ~/awae.ovpn > /dev/null 2>&1 &; sleep 10; zsh'
 alias fund-lab='sudo openvpn ~/fundamentals.ovpn > /dev/null 2>&1 &; sleep 10; zsh'
+alias install-apk='adb install *.apk'
+alias screenshot='adb shell screencap -p > "SS-"`date +"%m-%d%-%H-%M-%S"`".png"'
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
@@ -209,5 +231,3 @@ if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     # change suggestion color
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
 fi
-
-export PATH=/home/kali/.local/bin:/usr/local/bin/jadx/bin:$PATH
