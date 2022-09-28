@@ -1,4 +1,13 @@
 -----
+# Custom .zshrc
+-----
+Customized `.zshrc` configuration that adds IP addresses to the terminal.  
+The name is STATIC so make sure you change it if you download this!  
+Note that the colors will **not** look the same on your machine, they will depend on your terminal's theme!
+
+![](https://i.imgur.com/Bi5dUZO.png)
+
+-----
 # B64_encode_cmd.ps1
 -----
 Just a simple PowerShell script to encode commands to use with encoded powershell commands.
