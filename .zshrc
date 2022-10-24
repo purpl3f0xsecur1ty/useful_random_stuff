@@ -102,7 +102,7 @@ fi
 
 
 DIR=$'%B%F{yellow}%(6~.%-1~/…/%4~.%5~)%F{green}'
-NAME=$'ᑭᑌᖇᑭᒪ3ᖴ0᙭'
+NAME=$'CHANGEME'
 
 if [ "$color_prompt" = yes ]; then
 
@@ -220,10 +220,6 @@ fi
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
-alias awae-lab='sudo openvpn ~/awae.ovpn > /dev/null 2>&1 &; sleep 10; zsh'
-alias fund-lab='sudo openvpn ~/fundamentals.ovpn > /dev/null 2>&1 &; sleep 10; zsh'
-alias install-apk='adb install *.apk'
-alias screenshot='adb shell screencap -p > "SS-"`date +"%m-%d%-%H-%M-%S"`".png"'
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
