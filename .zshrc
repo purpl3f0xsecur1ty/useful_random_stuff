@@ -111,10 +111,10 @@ if [ "$color_prompt" = yes ]; then
 	LINE2=$'\n├──🮤'$DIR'🮥'
 	LINE3=$'\n└─%F{magenta}➤ '
 
-	TIME=$(date +%I:%M' '%p)
+	TIME=$'%t'
 
     PROMPT=$LINE1$LINE2$LINE3
-    RPROMPT=$'%F{green}[%F{reset} '$TIME'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)%F{green} ]'
+    RPROMPT=$'%F{green}[%F{reset}'$TIME'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)%F{green} ]'
 
     # enable syntax-highlighting
     if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && [ "$color_prompt" = yes ]; then
