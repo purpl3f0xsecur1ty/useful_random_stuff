@@ -1,8 +1,17 @@
+#####################################################################
+###                                                               ###
+### This config depends on NerdFonts to be used in your terminal, ###
+### else the glyphs will not render correctly!!!                  ###
+###                                                               ###
+#####################################################################
+
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
+export PATH=/usr/local/sbin/jadx-1.4.4/bin:/usr/local/sbin/ghidra_10.1.5_PUBLIC:/usr/bin/java:$PATH
+
 setopt autocd              # change directory just by typing its name
-#setopt correct            # auto correct mistakes
+setopt correct            # auto correct mistakes
 setopt interactivecomments # allow comments in interactive mode
 setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
 setopt nonomatch           # hide error message if there is no match for the pattern
@@ -77,39 +86,41 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # Getting IP addresses to add to prompt
+
 IP1=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep eth0 | grep -Po "inet \K[\d.]+") # Get normal interface, may need to be changed
 IP2=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep tun0 | grep -Po "inet \K[\d.]+") # Get VPN IP if connected
 IP3=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep wlan0 | grep -Po "inet \K[\d.]+") # Get Wireless IP if connected
 
 # Create prompts based on which interfaces are found
 if [ $IP1 ]; then
-	LOCAL="%F{green}─🮤🖥️ %F{cyan}$IP1%b%F{green}🮥"
+	LOCAL="%F{green}─🮤 %F{cyan}$IP1%b%F{green}🮥"
 else
 	LOCAL=""
 fi
 
 if [ $IP2 ]; then
-    VPN="%F{green}─🮤🔒%F{yellow}$IP2%b%F{green}🮥"
+    VPN="%F{green}─🮤 %F{yellow}$IP2%b%F{green}🮥"
 else
     VPN=""
 fi
 
 if [ $IP3 ]; then
-    WIFI="%F{green}─🮤📶%F{red}$IP3%F{green}🮥"
+    WIFI="%F{green}─🮤直 %F{red}$IP3%F{green}🮥"
 else
     WIFI=""
 fi
 
 
 DIR=$'%B%F{yellow}%(6~.%-1~/…/%4~.%5~)%F{green}'
-NAME=$'CHANGEME'
+# NAME=$'ᑭᑌᖇᑭᒪ3ᖴ0᙭'
+NAME=$'%F{blue} %F{magenta}ZephyFoxy'
 
 if [ "$color_prompt" = yes ]; then
 
 	# Assemble the prompt in pieces for readability
-	LINE1=$'%F{green}┌──🮤%F{magenta}'$NAME'%F{green}🮥'$LOCAL$VPN$WIFI
-	LINE2=$'\n├──🮤'$DIR'🮥'
-	LINE3=$'\n└─%F{magenta}➤ '
+	LINE1=$'%F{green}┌──🮤'$NAME'%F{green}🮥'$LOCAL$VPN$WIFI
+	LINE2=$'\n├──🮤%F{yellow}  '$DIR'🮥'
+	LINE3=$'\n└─%F{blue}   '
 
 	TIME=$'%t'
 
@@ -125,10 +136,10 @@ if [ "$color_prompt" = yes ]; then
 	ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=cyan,bold
 	ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=green,underline
 	ZSH_HIGHLIGHT_STYLES[global-alias]=fg=magenta
-	ZSH_HIGHLIGHT_STYLES[precommand]=fg=green,underline
+	ZSH_HIGHLIGHT_STYLES[precommand]=fg=magenta
 	ZSH_HIGHLIGHT_STYLES[commandseparator]=fg=blue,bold
 	ZSH_HIGHLIGHT_STYLES[autodirectory]=fg=green,underline
-	ZSH_HIGHLIGHT_STYLES[path]=underline
+	ZSH_HIGHLIGHT_STYLES[path]=fg=yellow,underline
 	ZSH_HIGHLIGHT_STYLES[path_pathseparator]=
 	ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]=
 	ZSH_HIGHLIGHT_STYLES[globbing]=fg=blue,bold
@@ -137,8 +148,8 @@ if [ "$color_prompt" = yes ]; then
 	ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]=fg=magenta
 	ZSH_HIGHLIGHT_STYLES[process-substitution]=none
 	ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]=fg=magenta
-	ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=magenta
-	ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=magenta
+	ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=blue
+	ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=blue
 	ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=none
 	ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]=fg=blue,bold
 	ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=yellow
@@ -217,9 +228,16 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Aliases
-alias ll='ls -l'
+alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
+alias ls='logo-ls'
+alias awae-lab='sudo openvpn ~/awae.ovpn > /dev/null 2>&1 &; sleep 10; zsh'
+alias fund-lab='sudo openvpn ~/fundamentals.ovpn > /dev/null 2>&1 &; sleep 10; zsh'
+alias install-apk='adb install *.apk'
+alias screenshot='adb shell screencap -p > "SS-"`date +"%m-%d%-%H-%M-%S"`".png"'
+alias art-upload='ssh zephy@zephyfoxy.art'
+alias commando='xfreerdp /u:CommandoVM /p:CommandoVM /v:192.168.1.135 /dynamic-resolution'
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
