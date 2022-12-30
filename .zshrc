@@ -112,8 +112,7 @@ fi
 
 
 DIR=$'%B%F{yellow}%(6~.%-1~/…/%4~.%5~)%F{green}'
-# NAME=$'ᑭᑌᖇᑭᒪ3ᖴ0᙭'
-NAME=$'%F{blue} %F{magenta}ZephyFoxy'
+NAME=$'%F{blue} %F{magenta}CHANGE ME'
 
 if [ "$color_prompt" = yes ]; then
 
