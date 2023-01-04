@@ -231,11 +231,6 @@ alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
 alias ls='logo-ls'
-alias awae-lab='sudo openvpn ~/awae.ovpn > /dev/null 2>&1 &; sleep 10; zsh'
-alias fund-lab='sudo openvpn ~/fundamentals.ovpn > /dev/null 2>&1 &; sleep 10; zsh'
-alias install-apk='adb install *.apk'
-alias screenshot='adb shell screencap -p > "SS-"`date +"%m-%d%-%H-%M-%S"`".png"'
-alias art-upload='ssh zephy@zephyfoxy.art'
 alias commando='xfreerdp /u:CommandoVM /p:CommandoVM /v:192.168.1.135 /dynamic-resolution'
 
 # enable auto-suggestions based on the history
