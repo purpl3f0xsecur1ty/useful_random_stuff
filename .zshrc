@@ -231,7 +231,6 @@ alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
 alias ls='logo-ls'
-alias commando='xfreerdp /u:CommandoVM /p:CommandoVM /v:192.168.1.135 /dynamic-resolution'
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
