@@ -230,7 +230,6 @@ fi
 alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
-alias ls='logo-ls'
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
