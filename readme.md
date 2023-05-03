@@ -9,6 +9,11 @@ __Please ensure you have a [NerdFont](https://www.nerdfonts.com/) installed and 
 ![](https://i.imgur.com/el16Csd.png)
 
 -----
+# scan-range.sh
+-----
+A bash script I use for large-scale pentests to derive a curated list of only live IP addresses and open ports from a list of CIDR ranges, and then kicks off nmap scans against those hosts and ports.
+
+-----
 # B64_encode_cmd.ps1
 -----
 Just a simple PowerShell script to encode commands to use with encoded powershell commands.
