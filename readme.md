@@ -10,7 +10,7 @@ __Please ensure you have a [NerdFont](https://www.nerdfonts.com/) installed and 
 ![](https://i.imgur.com/el16Csd.png)
 
 *WSL*  
-![](https://i.imgur.com/HDcwSWR.png)
+![](https://i.imgur.com/HBKiwQE.png)
 
 -----
 # scan-range.sh
