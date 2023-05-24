@@ -8,8 +8,6 @@
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
-export PATH=/usr/local/sbin/jadx-1.4.4/bin:/usr/local/sbin/ghidra_10.1.5_PUBLIC:/usr/bin/java:$PATH
-
 setopt autocd              # change directory just by typing its name
 setopt correct            # auto correct mistakes
 setopt interactivecomments # allow comments in interactive mode
