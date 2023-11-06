@@ -91,13 +91,13 @@ IP3=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep wlan0 | grep -Po
 
 # Create prompts based on which interfaces are found
 if [ $IP1 ]; then
-	LOCAL="%F{green}─🮤 %F{cyan}$IP1%b%F{green}🮥"
+	LOCAL="%F{green}─🮤 %F{cyan}$IP1%F{green}🮥"
 else
 	LOCAL=""
 fi
 
 if [ $IP2 ]; then
-    VPN="%F{green}─🮤 %F{yellow}$IP2%b%F{green}🮥"
+    VPN="%F{green}─🮤 %F{yellow}$IP2%F{green}🮥"
 else
     VPN=""
 fi
@@ -109,14 +109,14 @@ else
 fi
 
 
-DIR=$'%B%F{yellow}%(6~.%-1~/…/%4~.%5~)%F{green}'
+DIR=$'%B%F{yellow}%(6~.%-1~/…/%4~.%5~)%b%F{green}'
 NAME=$'%F{blue} %F{magenta}CHANGE ME'
 
 if [ "$color_prompt" = yes ]; then
 
 	# Assemble the prompt in pieces for readability
 	LINE1=$'%F{green}┌──🮤'$NAME'%F{green}🮥'$LOCAL$VPN$WIFI
-	LINE2=$'\n├──🮤%F{yellow}  '$DIR'🮥'
+	LINE2=$'\n├──🮤%B%F{yellow}%b  '$DIR'🮥'
 	LINE3=$'\n└─%F{blue}   '
 
 	TIME=$'%t'
