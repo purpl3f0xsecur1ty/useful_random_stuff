@@ -7,7 +7,7 @@ Note that the colors will **not** look the same on your machine, they will depen
 __Please ensure you have a [NerdFont](https://www.nerdfonts.com/) installed and set in your terminal, or you won't get these glyphs!__  
 *Note that this usually will not display properly in WSL because of how different Windows Terminal behaves, you may need to change the brackets and remove some glyphs!*
 
-![](https://i.imgur.com/el16Csd.png)
+![](2025-05-30_10-26.png)
 
 *WSL*  
 ![](https://i.imgur.com/HBKiwQE.png)
