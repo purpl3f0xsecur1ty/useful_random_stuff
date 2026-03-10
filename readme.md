@@ -15,7 +15,9 @@ Note that the colors will **not** look the same on your machine, they will depen
 -----
 # scan-range.sh
 -----
-A bash script I use for large-scale pentests to derive a curated list of only live IP addresses and open ports from a list of CIDR ranges, and then kicks off nmap scans against those hosts and ports.
+A bash script I use for large-scale pentests to derive a curated list of only live IP addresses and open ports from a list of CIDR ranges, and then kicks off nmap scans against those hosts and ports.  
+
+<img width="761" height="136" alt="image" src="https://github.com/user-attachments/assets/137d1aaf-535d-4f9c-ad27-2d94a29cf105" />
 
 -----
 # B64_encode_cmd.ps1
