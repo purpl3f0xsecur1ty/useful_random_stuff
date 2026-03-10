@@ -84,14 +84,15 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # Getting IP addresses to add to prompt
+### If you don't see your IP address, use "ip a" to get your interface's name, and replace "eno1" with your interface ###
 
-IP1=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep eth0 | grep -Po "inet \K[\d.]+") # Get normal interface, may need to be changed
+IP1=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep eno1 | grep -Po "inet \K[\d.]+") # Get normal interface, may need to be changed
 IP2=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep tun0 | grep -Po "inet \K[\d.]+") # Get VPN IP if connected
 IP3=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep wlan0 | grep -Po "inet \K[\d.]+") # Get Wireless IP if connected
 
 # Create prompts based on which interfaces are found
 if [ $IP1 ]; then
-	LOCAL="%F{green}─🮤 %F{cyan}$IP1%F{green}🮥"
+	LOCAL="%F{green}─🮤󰩟 %F{cyan}$IP1%F{green}🮥"
 else
 	LOCAL=""
 fi
@@ -110,14 +111,20 @@ fi
 
 
 DIR=$'%B%F{yellow}%(6~.%-1~/…/%4~.%5~)%b%F{green}'
-NAME=$'%F{blue} %F{magenta}CHANGE ME'
+
+### Uncomment for solid color name
+#NAME=$'%F{magenta}CHANGE ME'
+
+### Rainbow name
+NAME=$(echo "CHANGE ME" | lolcat -p .2 -t -F -S 13 -f)
+
 
 if [ "$color_prompt" = yes ]; then
 
 	# Assemble the prompt in pieces for readability
-	LINE1=$'%F{green}┌──🮤'$NAME'%F{green}🮥'$LOCAL$VPN$WIFI
+	LINE1=$'%F{green}┌──🮤%f%F{blue} %f'$NAME'%F{green}🮥'$LOCAL$VPN$WIFI
 	LINE2=$'\n├──🮤%B%F{yellow}%b  '$DIR'🮥'
-	LINE3=$'\n└─%F{blue}   '
+	LINE3=$'\n└─%F{green} '
 
 	TIME=$'%t'
 
@@ -199,6 +206,10 @@ precmd() {
     fi
 }
 
+function lolcat_wrapper(){
+	"$@" | lolcat
+}
+
 # enable color support of ls, less and man, and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -211,6 +222,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
     alias diff='diff --color=auto'
     alias ip='ip --color=auto'
+    alias neofetch='lolcat_wrapper fastfetch'
+    alias install='sudo apt install -y'
 
     export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
     export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
