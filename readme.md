@@ -2,9 +2,9 @@
 # Custom .zshrc
 -----
 Customized `.zshrc` configuration that adds IP addresses to the terminal.  
-The name is STATIC so make sure you change it if you download this!  
+### <ins>___The name is STATIC so make sure you change it if you download this!___</ins>  
 Note that the colors will **not** look the same on your machine, they will depend on your terminal's theme!  
-__Please ensure you have a [NerdFont](https://www.nerdfonts.com/) installed and set in your terminal, or you won't get these glyphs!__  
+### __Please ensure you have a [NerdFont](https://www.nerdfonts.com/) installed and set in your terminal, or you won't get these glyphs!__  
 *Note that this usually will not display properly in WSL because of how different Windows Terminal behaves, you may need to change the brackets and remove some glyphs!*
 
 ![](2025-05-30_10-26.png)
